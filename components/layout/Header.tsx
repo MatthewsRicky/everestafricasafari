@@ -37,7 +37,7 @@ export default function Header() {
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm font-medium text-ink/80 transition-colors hover:text-forest"
+                  className="text-sm font-medium text-ink/80 transition-colors hover:text-forest hover:bg-sand px-2 py-1 rounded-md"
                 >
                   {item.label}
                 </Link>
@@ -45,7 +45,7 @@ export default function Header() {
             </nav>
 
             <div className="hidden lg:block">
-              <Button href="/request-a-quote" className="min-h-11">
+              <Button href="/request-a-quote" className="text-sand hover:text-forest-deep hover:bg-safari-gold min-h-11">
                 Plan Your Safari
                 <ArrowUpRight size={16} />
               </Button>

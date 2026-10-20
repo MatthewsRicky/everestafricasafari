@@ -1,0 +1,126 @@
+
+everest-africa-safari/
+├── public/
+│   ├── images/
+│   │   ├── hero/
+│   │   ├── safaris/
+│   │   ├── destinations/
+│   │   ├── excursions/
+│   │   ├── wildlife/
+│   │   ├── vehicles/
+│   │   └── team/
+│   ├── icons/
+│   └── logo.svg
+│
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx
+│   │   ├── page.tsx
+│   │   ├── globals.css
+│   │   ├── not-found.tsx
+│   │   │
+│   │   ├── safaris/
+│   │   │   ├── page.tsx
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx
+│   │   │
+│   │   ├── destinations/
+│   │   │   ├── page.tsx
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx
+│   │   │
+│   │   ├── excursions/
+│   │   │   ├── page.tsx
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx
+│   │   │
+│   │   ├── tailor-made-safari/
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── about/
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── contact/
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── request-a-quote/
+│   │   │   └── page.tsx
+│   │   │
+│   │   ├── blog/
+│   │   │   ├── page.tsx
+│   │   │   └── [slug]/
+│   │   │       └── page.tsx
+│   │   │
+│   │   └── api/
+│   │       └── enquiries/
+│   │           └── route.ts
+│   │
+│   ├── components/
+│   │   ├── layout/
+│   │   │   ├── Header.tsx
+│   │   │   ├── Footer.tsx
+│   │   │   ├── MobileMenu.tsx
+│   │   │   └── WhatsAppButton.tsx
+│   │   │
+│   │   ├── home/
+│   │   │   ├── Hero.tsx
+│   │   │   ├── SafariFinder.tsx
+│   │   │   ├── FeaturedSafaris.tsx
+│   │   │   ├── PopularDestinations.tsx
+│   │   │   ├── WhyChooseUs.tsx
+│   │   │   ├── Testimonials.tsx
+│   │   │   └── FinalCTA.tsx
+│   │   │
+│   │   ├── safaris/
+│   │   │   ├── SafariCard.tsx
+│   │   │   ├── SafariGrid.tsx
+│   │   │   ├── SafariFilters.tsx
+│   │   │   ├── ItineraryTimeline.tsx
+│   │   │   ├── InclusionsList.tsx
+│   │   │   └── RelatedSafaris.tsx
+│   │   │
+│   │   ├── destinations/
+│   │   │   └── DestinationCard.tsx
+│   │   │
+│   │   ├── excursions/
+│   │   │   └── ExcursionCard.tsx
+│   │   │
+│   │   ├── enquiry/
+│   │   │   ├── QuoteForm.tsx
+│   │   │   └── EnquiryFields.tsx
+│   │   │
+│   │   ├── shared/
+│   │   │   ├── Container.tsx
+│   │   │   ├── SectionHeading.tsx
+│   │   │   ├── Breadcrumbs.tsx
+│   │   │   ├── Button.tsx
+│   │   │   └── ImageWithFallback.tsx
+│   │   │
+│   │   └── animations/
+│   │       └── Reveal.tsx
+│   │
+│   ├── data/
+│   │   ├── safaris.ts
+│   │   ├── destinations.ts
+│   │   ├── excursions.ts
+│   │   ├── testimonials.ts
+│   │   └── navigation.ts
+│   │
+│   ├── lib/
+│   │   ├── utils.ts
+│   │   ├── validations.ts
+│   │   └── metadata.ts
+│   │
+│   └── types/
+│       ├── safari.ts
+│       ├── destination.ts
+│       ├── excursion.ts
+│       └── enquiry.ts
+│
+├── .env.example
+├── .gitignore
+├── next.config.ts
+├── package.json
+├── postcss.config.mjs
+├── tsconfig.json
+└── README.md
