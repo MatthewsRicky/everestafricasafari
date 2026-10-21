@@ -2,6 +2,7 @@ import ContactDetails from "@/components/contact/ContactDetails";
 import QuoteForm from "@/components/enquiry/QuoteForm";
 import Container from "@/components/shared/Container";
 import PageHero from "@/components/shared/PageHero";
+import { Suspense } from "react";
 
 export default function ContactPage() {
   return (
@@ -15,8 +16,10 @@ export default function ContactPage() {
 
       <section className="section-padding bg-ivory">
         <Container className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-          <ContactDetails />
-          <QuoteForm />
+          <Suspense>
+            <ContactDetails />
+            <QuoteForm />
+          </Suspense>
         </Container>
       </section>
     </>
