@@ -24,10 +24,11 @@ export default function ExcursionCard({ excursion }: ExcursionCardProps) {
       <div className="p-6">
         <div className="flex items-center justify-between gap-4">
           <span className="text-[10px] font-bold uppercase tracking-[0.22em] text-safari-gold">
-            {excursion.location}
+            {excursion.departureLocation ?? "Kenya"}
           </span>
-          <span className="text-sm font-semibold text-forest">
-            {excursion.price}
+
+          <span className="text-xs font-semibold text-forest">
+            {excursion.verificationStatus.replaceAll("-", " ")}
           </span>
         </div>
 
@@ -37,10 +38,13 @@ export default function ExcursionCard({ excursion }: ExcursionCardProps) {
 
         <div className="mt-3 flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-muted">
           <Clock3 size={14} />
-          {excursion.duration}
+          {excursion.durationDays}{" "}
+          {excursion.durationDays === 1 ? "day" : "days"}
         </div>
 
-        <p className="mt-4 text-sm leading-7 text-muted">{excursion.blurb}</p>
+        <p className="mt-4 text-sm leading-7 text-muted">
+          {excursion.description}
+        </p>
 
         <span className="mt-6 flex items-center gap-2 text-sm font-semibold text-forest">
           Explore details
