@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { ArrowUpRight, Menu } from "lucide-react";
@@ -21,12 +22,18 @@ export default function Header() {
               className="flex shrink-0 flex-col"
               aria-label="Everest Africa Safari home"
             >
-              <span className="heading-display text-xl font-bold tracking-tight text-forest sm:text-2xl">
+              {/* <span className="heading-display text-xl font-bold tracking-tight text-forest sm:text-2xl">
                 EVEREST
               </span>
               <span className="text-[9px] font-bold uppercase tracking-[0.27em] text-muted">
                 Africa Safari
-              </span>
+              </span> */}
+              <Image 
+                src={"/logo.png"}
+                alt="Everest Africa Safari Logo"
+                width={200}
+                height={100}
+              />
             </Link>
 
             <nav
