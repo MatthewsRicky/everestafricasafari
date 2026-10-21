@@ -89,7 +89,7 @@ export default function MobileMenu({ open, onClose }: MobileMenuProps) {
             </Button>
 
             <p className="mt-6 text-center text-xs tracking-widest text-white/50">
-              YOUR AFRICAN ADVENTURE STARTS HERE
+              YOUR KENYAN ADVENTURE STARTS HERE
             </p>
           </div>
         </motion.div>

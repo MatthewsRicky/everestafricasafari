@@ -170,12 +170,15 @@ async function DestinationContent({ params }: DestinationDetailPageProps) {
     <>
       {/* Destination hero */}
       <section className="relative overflow-hidden bg-forest-deep text-white">
-        <div
-          className="absolute inset-0 bg-cover bg-center opacity-75"
-          style={{
-            backgroundImage: `url("${destination.image}")`,
-          }}
-        />
+        {destination.image && (
+          <div
+            aria-hidden="true"
+            className="absolute inset-0 bg-cover bg-center opacity-75"
+            style={{
+              backgroundImage: `url("${destination.image}")`,
+            }}
+          />
+        )}
         <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,44,37,0.94),rgba(16,44,37,0.76),rgba(16,44,37,0.35))]" />
 
         <Container className="relative py-20 sm:py-24 lg:py-28">
@@ -216,11 +219,18 @@ async function DestinationContent({ params }: DestinationDetailPageProps) {
         <Container className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
           <div>
             <div className="overflow-hidden rounded-[2rem] border border-border bg-white">
-              <img
-                src={destination.image}
-                alt={destination.title}
-                className="aspect-[4/5] w-full object-cover"
-              />
+              {destination.image ? (
+                <img
+                  src={destination.image}
+                  alt={`${destination.name} landscape`}
+                  className="aspect-[4/5] w-full object-cover"
+                />
+              ) : (
+                <div
+                  className="aspect-[4/5] w-full bg-sand"
+                  aria-label="No destination image added yet"
+                />
+              )}
             </div>
 
             <div className="mt-5 rounded-2xl border border-border bg-white p-5">

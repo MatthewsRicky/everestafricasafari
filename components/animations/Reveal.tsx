@@ -1,7 +1,44 @@
-import React from 'react'
+"use client";
 
-export default function Reveal() {
+import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState, type ReactNode } from "react";
+
+type RevealProps = {
+  children: ReactNode;
+  className?: string;
+  delay?: number;
+};
+
+export default function Reveal({
+  children,
+  className,
+  delay = 0,
+}: RevealProps) {
+  const [mounted, setMounted] = useState(false);
+  const reduceMotion = useReducedMotion();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Keep server HTML and the first client render identical.
+  if (!mounted || reduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
-    <div>Reveal</div>
-  )
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.15 }}
+      transition={{
+        duration: 0.6,
+        delay,
+        ease: "easeOut",
+      }}
+    >
+      {children}
+    </motion.div>
+  );
 }

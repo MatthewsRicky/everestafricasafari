@@ -52,8 +52,6 @@ export default function Hero() {
                 Explore safaris
               </Button>
             </div>
-
-           
           </div>
 
           <div className="relative mx-auto w-full max-w-md lg:justify-self-end">
@@ -65,7 +63,7 @@ export default function Hero() {
             <div className="rounded-[2rem] border border-white/15 bg-white/10 p-3 shadow-[0_30px_80px_rgba(0,0,0,0.3)] backdrop-blur-sm">
               <div className="overflow-hidden rounded-[1.5rem] border border-white/10 bg-sand/20">
                 <img
-                  src="https://images.unsplash.com/photo-1547036967-23d11aacaee0?auto=format&fit=crop&w=1200&q=80"
+                  src="\parks\maasai-mara-national-reserve-kenya.jpg"
                   alt="Safari vehicle exploring the African savannah"
                   className="h-[320px] w-full object-cover sm:h-[400px] lg:h-[440px]"
                 />

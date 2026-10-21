@@ -32,8 +32,8 @@ export default function RootLayout({
       <body className="min-h-screen">
         <Header />
         <main>{children}</main>
-        <Footer />
         <WhatsAppButton />
+        <Footer />
       </body>
     </html>
   );

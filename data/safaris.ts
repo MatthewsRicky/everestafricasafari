@@ -7,15 +7,11 @@ const adventureListing = "https://www.everestafricasafari.com/adventure-tour/";
 const mombasaListing =
   "https://www.everestafricasafari.com/mombasa-safaris-explore-wildlife-coastal-adventures/";
 
-const placeholderImages = [
-  "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=80",
-];
 
 type SafariSeed = {
   slug: string;
   title: string;
+  image: string;
   sourceTitle: string;
   destination: string;
   destinations: string[];
@@ -63,7 +59,7 @@ function createSafari(seed: SafariSeed, index: number): Safari {
   return {
     ...seed,
     sourceUrl,
-    image: placeholderImages[index % placeholderImages.length],
+    image: seed.image,
     imageStatus: "placeholder",
     featured: seed.featured ?? false,
     styles: [seed.category],
@@ -97,6 +93,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "maasai-mara-2-day",
     title: "2-Day Maasai Mara Safari",
+    image: "/packages/2-days-kenya-safari-maasai-mara-768x362.jpg",
     sourceTitle: "2 Days Masaai Mara National reserve",
     destination: "Maasai Mara",
     destinations: ["Maasai Mara"],
@@ -109,6 +106,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "maasai-mara-3-day",
     title: "3-Day Maasai Mara Safari",
+    image: "/packages/3-dsys-maasai-mara-768x300.jpg",
     sourceTitle: "3 Days Masai Mara National Park",
     destination: "Maasai Mara",
     destinations: ["Maasai Mara"],
@@ -122,6 +120,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "tsavo-east-west-2-day",
     title: "2-Day Tsavo East & West Safari",
+    image: "/destinations/amboseli/2-days-one-night-Tsavo-East-West.jpg",
     sourceTitle: "2 Days Tsavo East West National Park",
     destination: "Tsavo East & West",
     destinations: ["Tsavo East", "Tsavo West"],
@@ -134,6 +133,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "tsavo-east-west-3-day",
     title: "3-Day Tsavo East & West Safari",
+    image: "/destinations/amboseli/3-days-Tsavo-East-West.jpg",
     sourceTitle: "3 Days Tsavo East West National Park",
     destination: "Tsavo East & West",
     destinations: ["Tsavo East", "Tsavo West"],
@@ -146,6 +146,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "tsavo-east-west-4-day",
     title: "4-Day Tsavo East & West Safari",
+    image: "/packages/4-Days-Nights-Tsavo-East-West-768x300.jpg",
     sourceTitle: "4 Days Tsavo East West National Park",
     destination: "Tsavo East & West",
     destinations: ["Tsavo East", "Tsavo West"],
@@ -157,6 +158,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "tsavo-amboseli-5-day",
     title: "5-Day Tsavo & Amboseli Safari",
+    image: "/destinations/amboseli/5-Days-Tsavo-East-West-Amboseli-768x300.jpg",
     sourceTitle: "5 Days Tsavo East West Amboseli National Park",
     destination: "Tsavo & Amboseli",
     destinations: ["Tsavo East", "Tsavo West", "Amboseli"],
@@ -168,6 +170,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "tsavo-amboseli-6-day",
     title: "6-Day Tsavo & Amboseli Safari",
+    image: "/packages/6-Days-Samburu-Nakuru-Mara-1.jpg",
     sourceTitle: "6 Days To Tsavo Amboseli – Tsavo West East.",
     destination: "Tsavo & Amboseli",
     destinations: ["Tsavo East", "Tsavo West", "Amboseli"],
@@ -187,6 +190,8 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "tsavo-amboseli-nakuru-mara-8-day",
     title: "8-Day Tsavo, Amboseli, Nakuru & Maasai Mara Safari",
+    image:
+      "/destinations/amboseli/8-Days-Tsavo-East-West-Amboseli-L-Nakuru–Masaai-Mara-768x300.jpg",
     sourceTitle:
       "8 Days Tsavo East West Amboseli L. Nakuru – Masaai Mara National Park",
     destination: "Multi-park Kenya safari",
@@ -205,6 +210,8 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "amboseli-samburu-mara-8-day",
     title: "8-Day Amboseli, Samburu & Maasai Mara Safari",
+    image:
+      "/destinations/amboseli/3-days-2-nights-amboseli-and-masaai-mara-768x300.jpg",
     sourceTitle: "8 Days Safari To Amboseli, Samburu, Maasai Mara",
     destination: "Amboseli, Samburu & Maasai Mara",
     destinations: ["Amboseli", "Samburu", "Maasai Mara"],
@@ -217,6 +224,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "samburu-nakuru-mara-6-day",
     title: "6-Day Samburu, Lake Nakuru & Maasai Mara Safari",
+    image: "/packages/6-Days-Samburu-Nakuru-Mara_1-768x362.jpg",
     sourceTitle: "6 Days, Samburu, Nakuru, Mara National Park",
     destination: "Samburu, Nakuru & Maasai Mara",
     destinations: ["Samburu", "Lake Nakuru", "Maasai Mara"],
@@ -229,6 +237,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "mara-nakuru-samburu-7-day",
     title: "7-Day Maasai Mara, Lake Nakuru & Samburu Safari",
+    image: "/packages/4-Days-Nairobi-Mara-Nakuru_1.jpg",
     sourceTitle: "7 Days Maasai Mara, Lake Nakuru, Samburu.",
     destination: "Maasai Mara, Nakuru & Samburu",
     destinations: ["Maasai Mara", "Lake Nakuru", "Samburu"],
@@ -241,6 +250,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "samburu-aberdares-nakuru-mara-7-day",
     title: "7-Day Samburu, Aberdares, Nakuru & Maasai Mara Safari",
+    image: "/packages/6-Days-Samburu-Nakuru-Mara-1.jpg",
     sourceTitle: "7 Days Safari Samburu, Aberdares, Lake Nakuru & Masai Mara",
     destination: "Samburu, Aberdares, Nakuru & Maasai Mara",
     destinations: ["Samburu", "Aberdares", "Lake Nakuru", "Maasai Mara"],
@@ -253,6 +263,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "nairobi-mara-nakuru-4-day",
     title: "4-Day Nairobi, Maasai Mara & Lake Nakuru Safari",
+    image: "/packages/4-Days-Nairobi-Mara-Nakuru.jpg",
     sourceTitle: "4 Days Nairobi Mara Nakuru National park",
     destination: "Nairobi, Maasai Mara & Nakuru",
     destinations: ["Nairobi", "Maasai Mara", "Lake Nakuru"],
@@ -265,6 +276,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "aberdares-mara-nakuru-5-day",
     title: "5-Day Aberdares, Maasai Mara & Lake Nakuru Safari",
+    image: "/parks/aberdares-kenya.jpg",
     sourceTitle: "5 Days, Aberdares, Mara, Nakuru",
     destination: "Aberdares, Maasai Mara & Nakuru",
     destinations: ["Aberdares", "Maasai Mara", "Lake Nakuru"],
@@ -276,6 +288,8 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "kenya-circuit-10-day",
     title: "10-Day Kenya Safari Circuit",
+    image:
+      "/destinations/amboseli/11-Days-Tsavo-East-West–Amboseli-Samburu-Sweet-waters-Nakuru-Amboseli-Nairobi-768x300.jpg",
     sourceTitle:
       "10 Days Tsavo East West – Amboseli, Samburu, Sweet waters, Nakuru Amboseli, Nairobi",
     destination: "Multi-park Kenya safari",
@@ -303,6 +317,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "lake-nakuru-2-day",
     title: "2-Day Lake Nakuru Safari",
+    image: "/packages/Lake-nakuru-national-park-1.jpg",
     sourceTitle: "2 Days Lake Nakuru National Park",
     destination: "Lake Nakuru",
     destinations: ["Lake Nakuru"],
@@ -315,6 +330,7 @@ const safariSeeds: SafariSeed[] = [
   {
     slug: "samburu-2-day",
     title: "2-Day Samburu Safari",
+    image: "/packages/samburu-_3-days-768x300.jpg",
     sourceTitle: "2 Days Samburu National Reserve",
     destination: "Samburu",
     destinations: ["Samburu"],

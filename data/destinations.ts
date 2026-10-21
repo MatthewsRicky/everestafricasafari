@@ -51,8 +51,7 @@ export const destinations: Destination[] = [
       "One of Africa's best-known safari destinations, celebrated for its wildlife, sweeping savannah and the seasonal Great Migration.",
     blurb:
       "Discover vast grasslands, remarkable wildlife and the wider Mara–Serengeti ecosystem on a classic Kenyan safari.",
-    image:
-      "https://images.unsplash.com/photo-1516426122078-c23e76319801?auto=format&fit=crop&w=1200&q=80",
+    image: "/parks/maasai-mara-national-reserve-kenya.jpg",
     images: destinationImages(),
     highlights: [
       "Great Migration",
@@ -153,7 +152,7 @@ export const destinations: Destination[] = [
     blurb:
       "Experience elephant-rich landscapes and dramatic mountain scenery in one of southern Kenya's signature safari destinations.",
     image:
-      "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1200&q=80",
+      "/destinations/amboseli/3-days-2-nights-amboseli-and-masaai-mara_2-768x362.jpg",
     images: destinationImages(),
     highlights: [
       "Elephants",
@@ -248,8 +247,7 @@ export const destinations: Destination[] = [
       "A vast wilderness of open plains, volcanic features, diverse habitats and the famous red-dusted elephants of Tsavo.",
     blurb:
       "Explore two contrasting parks through expansive landscapes, wildlife drives and memorable stops along Kenya's southern safari circuit.",
-    image:
-      "https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=1200&q=80",
+    image: "/packages/tsavo-nationalpark-1.jpg",
     images: destinationImages(),
     highlights: [
       "Tsavo East",
@@ -349,8 +347,7 @@ export const destinations: Destination[] = [
       "A lake-centred wildlife destination known for birdlife, rhino conservation and varied landscapes.",
     blurb:
       "Add Lake Nakuru to a wider Kenya safari for a different landscape and a chance to explore another of the country's established wildlife destinations.",
-    image:
-      "https://images.unsplash.com/photo-1472396961693-142e6e269027?auto=format&fit=crop&w=1200&q=80",
+    image: "/packages/Lake-nakuru-national-park-1.jpg",
     images: destinationImages(),
     highlights: [
       "Lake landscapes",
@@ -449,8 +446,7 @@ export const destinations: Destination[] = [
       "A distinctive northern Kenya safari destination featured in longer routes through diverse landscapes and wildlife habitats.",
     blurb:
       "Travel north for a different safari setting and combine Samburu with other major wildlife destinations on a longer Kenyan itinerary.",
-    image:
-      "https://images.unsplash.com/photo-1535338454770-8be927b5a00b?auto=format&fit=crop&w=1200&q=80",
+    image: "/parks/samburu-national-park.jpg",
     images: destinationImages(),
     highlights: [
       "Northern Kenya",
@@ -539,8 +535,7 @@ export const destinations: Destination[] = [
       "A highland wilderness of misty forests, waterfalls, moorlands and diverse mountain wildlife.",
     blurb:
       "Discover a cooler, greener side of Kenya through forest scenery, mountain habitats and wildlife experiences beyond the classic savannah.",
-    image:
-      "https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1200&q=80",
+    image: "/parks/aberdares-kenya.jpg",
     images: destinationImages(),
     highlights: [
       "Mountain forests",
