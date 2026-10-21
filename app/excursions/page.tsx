@@ -11,7 +11,7 @@ export default function ExcursionsPage() {
         eyebrow="Excursions"
         title="Add a little more wonder to the journey."
         description="Enhance your safari with immersive experiences that bring you closer to the rhythm of the landscape and the wildlife that inhabits it."
-        image="https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1800&q=80"
+        image="/excursions/mombasa_city-768x362.jpg"
       />
 
       <section className="section-padding bg-ivory">
