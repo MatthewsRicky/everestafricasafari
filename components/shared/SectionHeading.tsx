@@ -20,7 +20,7 @@ export default function SectionHeading({
       {eyebrow && (
         <p
           className={`mb-4 text-xs font-bold uppercase tracking-[0.22em] ${
-            light ? "text-safari-gold" : "text-forest"
+            light ? "text-safari-gold" : "text-maroon"
           }`}
         >
           {eyebrow}

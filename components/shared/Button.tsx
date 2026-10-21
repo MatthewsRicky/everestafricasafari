@@ -10,12 +10,14 @@ type ButtonProps = {
   className?: string;
 };
 
+
 const variants = {
-  primary: "bg-forest text-white hover:bg-forest-deep",
+  primary: "bg-maroon text-white hover:bg-maroon-deep",
   secondary:
-    "border border-white/50 text-white hover:bg-white hover:text-forest",
-  light: "bg-ivory text-forest hover:bg-white",
+    "border border-white/60 text-white hover:bg-white hover:text-maroon-deep",
+  light: "bg-ivory text-maroon-deep hover:bg-white",
 };
+
 
 export default function Button({
   href,
