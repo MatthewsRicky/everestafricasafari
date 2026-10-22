@@ -31,7 +31,7 @@ export default function AboutPage() {
         eyebrow="About us"
         title="We believe the best safaris feel personal from the very first conversation."
         description="Everest Africa Safari creates journeys that balance iconic wildlife, refined comfort and the freedom to travel in your own way."
-        image="https://images.unsplash.com/photo-1521295121783-8a321d551ad2?auto=format&fit=crop&w=1800&q=80"
+        image="/packages/4-Days-Nairobi-Mara-Nakuru_1.jpg"
         ctaHref="/request-a-quote"
         ctaLabel="Plan your safari"
         secondaryHref="/safaris"
@@ -83,7 +83,7 @@ export default function AboutPage() {
       </section>
 
       <CTASection
-        title="Ready to begin your own African story?"
+        title="Ready to begin your own Kenyan story?"
         description="Tell us where you want to go, what you want to feel and what kind of time you want to have. We’ll shape the next step with you."
       />
     </>
