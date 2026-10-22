@@ -1,3 +1,5 @@
+import { ExternalLink, Star } from "lucide-react";
+
 import Container from "@/components/shared/Container";
 import SectionHeading from "@/components/shared/SectionHeading";
 import Reveal from "@/components/animations/Reveal";
@@ -11,9 +13,9 @@ export default function Testimonials() {
       <Container>
         <Reveal>
           <SectionHeading
-            eyebrow="Words from our travellers"
+            eyebrow="Verified guest reviews"
             title="Experiences worth remembering."
-            description="Read about the journeys our guests have shared."
+            description="Read what travellers have shared about their experiences with Everest Africa Safari."
             align="center"
           />
         </Reveal>
@@ -22,17 +24,28 @@ export default function Testimonials() {
           {testimonials.map((testimonial) => (
             <article
               key={testimonial.id}
-              className="rounded-xl border border-border bg-white p-6 sm:p-8"
+              className="flex h-full flex-col rounded-xl border border-border bg-white p-6 sm:p-8"
             >
-              <span
-                aria-hidden="true"
-                className="heading-display text-5xl text-maroon"
+              <div
+                className="flex items-center gap-1 text-amber-500"
+                aria-label={`${testimonial.rating} out of 5 stars`}
               >
-                “
-              </span>
+                {Array.from({ length: testimonial.rating }).map((_, index) => (
+                  <Star
+                    key={index}
+                    size={16}
+                    fill="currentColor"
+                    aria-hidden="true"
+                  />
+                ))}
+              </div>
 
-              <blockquote className="mt-2 text-sm leading-7 text-ink">
-                {testimonial.quote}
+              <h3 className="mt-4 font-semibold leading-6 text-forest-deep">
+                {testimonial.title}
+              </h3>
+
+              <blockquote className="mt-3 flex-1 text-sm leading-7 text-ink">
+                “{testimonial.quote}”
               </blockquote>
 
               <div className="mt-6 border-t border-border pt-4">
@@ -45,6 +58,20 @@ export default function Testimonials() {
                     {testimonial.location}
                   </p>
                 )}
+
+                <p className="mt-2 text-xs text-muted">
+                  Published {testimonial.date} · Tripadvisor
+                </p>
+
+                <a
+                  href={testimonial.sourceUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-forest-deep transition hover:text-maroon"
+                >
+                  Read on Tripadvisor
+                  <ExternalLink size={14} />
+                </a>
               </div>
             </article>
           ))}

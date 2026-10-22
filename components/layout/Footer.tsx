@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Container from "@/components/shared/Container";
 import { navigation } from "@/lib/navigation";
+import { FaFacebookF, FaInstagram, FaTripadvisor } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -44,6 +45,41 @@ export default function Footer() {
                   </li>
                 ))}
               </ul>
+            </div>
+            <div>
+              <h3 className="text-sm font-semibold text-white/50">
+                Follow our journey
+              </h3>
+              <div className="mt-4 flex items-center gap-4">
+                <a
+                  href="https://www.facebook.com/wakahuna89/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Everest Africa Safari on Facebook"
+                  className="text-white/70 transition hover:text-white"
+                >
+                  <FaFacebookF size={20} aria-hidden="true" />
+                </a>
+
+                <a
+                  href="https://www.instagram.com/everestafricasafari/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Everest Africa Safari on Instagram"
+                  className="text-white/70 transition hover:text-white"
+                >
+                  <FaInstagram size={20} aria-hidden="true" />
+                </a>
+                <a
+                  href="https://www.tripadvisor.com/Attraction_Review-g775870-d33304978-Reviews-Everest_Africa_Safari-Diani_Beach_Ukunda_Coast_Province.html/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Everest Africa Safari on Instagram"
+                  className="text-white/70 transition hover:text-white"
+                >
+                  <FaTripadvisor size={20} aria-hidden="true" />
+                </a>
+              </div>
             </div>
 
             <div>
