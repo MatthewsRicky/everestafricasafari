@@ -11,7 +11,7 @@ export default function DestinationsPage() {
         eyebrow="Destinations"
         title="Where your dream safari begins."
         description="Explore the landscapes and wildlife stories that define a remarkable African journey, from iconic plains to hidden river systems."
-        image="https://images.unsplash.com/photo-1474511320723-9a56873867b5?auto=format&fit=crop&w=1800&q=80"
+        image="/packages/4-Days-Nairobi-Mara-Nakuru_1.jpg"
       />
 
       <section className="section-padding bg-ivory">
