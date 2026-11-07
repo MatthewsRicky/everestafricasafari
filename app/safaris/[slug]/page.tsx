@@ -16,6 +16,7 @@ import Container from "@/components/shared/Container";
 import { getSafariBySlug, safaris } from "@/data/safaris";
 import { destinations } from "@/data/destinations";
 import type { Destination } from "@/types/destination";
+import { formatPrice } from "@/lib/format-price";
 
 type SafariDetailPageProps = {
   params: Promise<{ slug: string }>;
@@ -182,6 +183,39 @@ async function SafariDetailContent({ params }: SafariDetailPageProps) {
                   {safari.durationDays === 1 ? "day" : "days"}
                 </span>
               </div>
+              {safari.prices &&
+                Object.values(safari.prices).some(
+                  (amount) => typeof amount === "number",
+                ) && (
+                  <div className="mt-7">
+                    <p className="text-xs font-bold uppercase tracking-[0.18em] text-white/60">
+                      Indicative price per person
+                    </p>
+
+                    <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
+                      {(
+                        [
+                          ["USD", safari.prices.USD],
+                          ["EUR", safari.prices.EUR],
+                          ["KES", safari.prices.KES],
+                        ] as const
+                      ).map(([currency, amount]) =>
+                        typeof amount === "number" ? (
+                          <span
+                            key={currency}
+                            className="text-2xl font-semibold text-white"
+                          >
+                            {formatPrice(amount, currency)}
+                          </span>
+                        ) : null,
+                      )}
+                    </div>
+
+                    <p className="mt-2 text-xs text-white/55">
+                      Final pricing is subject to confirmation.
+                    </p>
+                  </div>
+                )}
 
               <Link
                 href={quoteUrl}
@@ -235,8 +269,8 @@ async function SafariDetailContent({ params }: SafariDetailPageProps) {
                 {safariDestinations.length === 0 && (
                   <p className="mt-4 text-sm leading-6 text-muted">
                     Destination profiles for this route are still being
-                    prepared. Contact our team to discuss the locations
-                    included in this package.
+                    prepared. Contact our team to discuss the locations included
+                    in this package.
                   </p>
                 )}
               </section>
@@ -254,9 +288,8 @@ async function SafariDetailContent({ params }: SafariDetailPageProps) {
 
                   <p className="mt-4 max-w-3xl leading-7 text-muted">
                     Explore the landscapes, wildlife and experiences associated
-                    with the destinations named in this safari package.
-                    Specific stops and activities depend on the confirmed
-                    itinerary.
+                    with the destinations named in this safari package. Specific
+                    stops and activities depend on the confirmed itinerary.
                   </p>
 
                   <div className="mt-7 space-y-8">
@@ -307,6 +340,42 @@ async function SafariDetailContent({ params }: SafariDetailPageProps) {
                                   ))}
                                 </div>
                               )}
+
+                              {safari.prices &&
+                                Object.values(safari.prices).some(
+                                  (amount) => typeof amount === "number",
+                                ) && (
+                                  <div className="mt-5">
+                                    <p className="text-xs font-bold uppercase tracking-[0.16em] text-muted">
+                                      Indicative price per person
+                                    </p>
+
+                                    <div className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
+                                      {(
+                                        [
+                                          ["USD", safari.prices.USD],
+                                          ["EUR", safari.prices.EUR],
+                                          ["KES", safari.prices.KES],
+                                        ] as const
+                                      ).map(([currency, amount]) =>
+                                        typeof amount === "number" ? (
+                                          <span
+                                            key={currency}
+                                            className="text-xl font-bold text-maroon-deep"
+                                          >
+                                            {formatPrice(amount, currency)}
+                                          </span>
+                                        ) : null,
+                                      )}
+                                    </div>
+
+                                    <p className="mt-2 text-xs leading-5 text-muted">
+                                      Rates may vary depending on travel dates,
+                                      group size, accommodation and confirmed
+                                      inclusions.
+                                    </p>
+                                  </div>
+                                )}
 
                               <Link
                                 href={`/destinations/${destination.slug}`}
@@ -370,10 +439,7 @@ async function SafariDetailContent({ params }: SafariDetailPageProps) {
                           {destination.details.practicalInfo.length > 0 && (
                             <div className="border-t border-border bg-sand/20 p-6 sm:p-7">
                               <div className="flex items-center gap-2">
-                                <Info
-                                  size={17}
-                                  className="text-maroon"
-                                />
+                                <Info size={17} className="text-maroon" />
                                 <h4 className="font-semibold text-maroon-deep">
                                   Practical information
                                 </h4>
@@ -506,6 +572,29 @@ async function SafariDetailContent({ params }: SafariDetailPageProps) {
                             {relatedSafari.title}
                           </h3>
 
+                          {relatedSafari.prices &&
+                            Object.values(relatedSafari.prices).some(
+                              (amount) => typeof amount === "number",
+                            ) && (
+                              <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
+                                {(
+                                  [
+                                    ["USD", relatedSafari.prices.USD],
+                                    ["EUR", relatedSafari.prices.EUR],
+                                    ["KES", relatedSafari.prices.KES],
+                                  ] as const
+                                ).map(([currency, amount]) =>
+                                  typeof amount === "number" ? (
+                                    <span
+                                      key={currency}
+                                      className="text-sm font-semibold text-maroon-deep"
+                                    >
+                                      {formatPrice(amount, currency)}
+                                    </span>
+                                  ) : null,
+                                )}
+                              </div>
+                            )}
                           <Link
                             href={`/safaris/${relatedSafari.slug}`}
                             className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-maroon hover:text-maroon-deep"
@@ -532,34 +621,25 @@ async function SafariDetailContent({ params }: SafariDetailPageProps) {
               </h2>
 
               <p className="mt-3 text-sm leading-6 text-muted">
-                Tell us your preferred travel dates, group size and
-                requirements so the team can discuss a suitable itinerary and
-                current pricing with you.
+                Tell us your preferred travel dates, group size and requirements
+                so the team can discuss a suitable itinerary and current pricing
+                with you.
               </p>
 
               <div className="mt-5 space-y-3 border-y border-border py-5 text-sm text-muted">
                 <p className="flex items-start gap-3">
-                  <Clock3
-                    size={17}
-                    className="mt-0.5 shrink-0 text-maroon"
-                  />
+                  <Clock3 size={17} className="mt-0.5 shrink-0 text-maroon" />
                   {safari.durationDays}{" "}
                   {safari.durationDays === 1 ? "day" : "days"} advertised
                 </p>
 
                 <p className="flex items-start gap-3">
-                  <MapPin
-                    size={17}
-                    className="mt-0.5 shrink-0 text-maroon"
-                  />
+                  <MapPin size={17} className="mt-0.5 shrink-0 text-maroon" />
                   {safari.destinations.join(", ")}
                 </p>
 
                 <p className="flex items-start gap-3">
-                  <Compass
-                    size={17}
-                    className="mt-0.5 shrink-0 text-maroon"
-                  />
+                  <Compass size={17} className="mt-0.5 shrink-0 text-maroon" />
                   Routing and overnight stops to be confirmed
                 </p>
               </div>
@@ -573,10 +653,10 @@ async function SafariDetailContent({ params }: SafariDetailPageProps) {
               </Link>
 
               <p className="mt-4 text-xs leading-5 text-muted">
-                Duration, routing, accommodation, inclusions and price must
-                be confirmed with the operator. Destination information is
-                provided for general planning and does not guarantee that
-                every listed experience forms part of this package.
+                Duration, routing, accommodation, inclusions and price must be
+                confirmed with the operator. Destination information is provided
+                for general planning and does not guarantee that every listed
+                experience forms part of this package.
               </p>
             </aside>
           </div>

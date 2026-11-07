@@ -398,6 +398,27 @@ async function ExcursionDetailContent({ params }: Props) {
                       {item.description}
                     </p>
 
+                    {item.prices && Object.keys(item.prices).length > 0 && (
+                      <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1">
+                        {(
+                          [
+                            ["USD", item.prices.USD],
+                            ["EUR", item.prices.EUR],
+                            ["KES", item.prices.KES],
+                          ] as const
+                        ).map(([currency, amount]) =>
+                          typeof amount === "number" ? (
+                            <span
+                              key={currency}
+                              className="text-sm font-semibold text-forest"
+                            >
+                              {formatPrice(amount, currency)}
+                            </span>
+                          ) : null,
+                        )}
+                      </div>
+                    )}
+
                     <span className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-forest">
                       Explore excursion
                       <ArrowRight size={15} />
