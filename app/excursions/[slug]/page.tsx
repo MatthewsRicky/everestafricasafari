@@ -14,6 +14,7 @@ import CTASection from "@/components/shared/CTASection";
 import Container from "@/components/shared/Container";
 import SectionHeading from "@/components/shared/SectionHeading";
 import { excursions } from "@/data/excursions";
+import { formatPrice } from "@/lib/format-price";
 
 type Props = {
   params: Promise<{ slug: string }>;
@@ -125,6 +126,36 @@ async function ExcursionDetailContent({ params }: Props) {
                   </span>
                 )}
               </div>
+              {excursion.prices && Object.keys(excursion.prices).length > 0 && (
+                <div className="mt-6">
+                  <p className="text-xs font-medium uppercase tracking-[0.18em] text-white/65">
+                    Indicative price per person
+                  </p>
+
+                  <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
+                    {(
+                      [
+                        ["USD", excursion.prices.USD],
+                        ["EUR", excursion.prices.EUR],
+                        ["KES", excursion.prices.KES],
+                      ] as const
+                    ).map(([currency, amount]) =>
+                      typeof amount === "number" ? (
+                        <span
+                          key={currency}
+                          className="text-2xl font-semibold text-white"
+                        >
+                          {formatPrice(amount, currency)}
+                        </span>
+                      ) : null,
+                    )}
+                  </div>
+
+                  <p className="mt-2 text-xs text-white/60">
+                    Final pricing is subject to confirmation.
+                  </p>
+                </div>
+              )}
 
               <Link
                 href={enquiryUrl}
@@ -260,6 +291,37 @@ async function ExcursionDetailContent({ params }: Props) {
                   </div>
                 )}
               </div>
+
+              {excursion.prices && Object.keys(excursion.prices).length > 0 && (
+                <div className="border-t border-forest/10 pt-5">
+                  <p className="text-xs text-ink/50">
+                    Indicative price per person
+                  </p>
+
+                  <div className="mt-2 flex flex-wrap gap-x-4 gap-y-2">
+                    {(
+                      [
+                        ["USD", excursion.prices.USD],
+                        ["EUR", excursion.prices.EUR],
+                        ["KES", excursion.prices.KES],
+                      ] as const
+                    ).map(([currency, amount]) =>
+                      typeof amount === "number" ? (
+                        <span
+                          key={currency}
+                          className="text-xl font-semibold text-forest"
+                        >
+                          {formatPrice(amount, currency)}
+                        </span>
+                      ) : null,
+                    )}
+                  </div>
+
+                  <p className="mt-2 text-xs leading-5 text-ink/50">
+                    Rates and inclusions are confirmed during your enquiry.
+                  </p>
+                </div>
+              )}
 
               <Link
                 href={enquiryUrl}

@@ -7,6 +7,7 @@ import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { safaris } from "@/data/safaris";
 import { excursions } from "@/data/excursions";
 import { destinations } from "@/data/destinations";
+import { formatPrice } from "@/lib/format-price";
 
 type EnquiryType = "safari" | "excursion" | "destination" | "custom";
 
@@ -54,6 +55,11 @@ export default function QuoteForm() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [status, setStatus] = useState<FormStatus>(initialStatus);
+
+  const selectedSafari =
+    enquiryType === "safari"
+      ? safaris.find((safari) => safari.slug === safariSlug)
+      : undefined;
 
   useEffect(() => {
     if (initialSafariSlug) {
@@ -237,6 +243,54 @@ export default function QuoteForm() {
               </option>
             ))}
           </select>
+
+          {selectedSafari && (
+            <div className="mt-4 rounded-2xl border border-border bg-ivory p-5">
+              <p className="text-xs font-bold uppercase tracking-wider text-maroon">
+                Selected safari
+              </p>
+
+              <h3 className="mt-2 font-semibold text-maroon-deep">
+                {selectedSafari.title}
+              </h3>
+
+              {selectedSafari.prices &&
+                Object.entries(selectedSafari.prices).some(
+                  ([, amount]) => typeof amount === "number",
+                ) && (
+                  <div className="mt-4">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-muted">
+                      Indicative price per person
+                    </p>
+
+                    <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
+                      {(
+                        [
+                          ["USD", selectedSafari.prices.USD],
+                          ["EUR", selectedSafari.prices.EUR],
+                          ["KES", selectedSafari.prices.KES],
+                        ] as const
+                      ).map(([currency, amount]) =>
+                        typeof amount === "number" ? (
+                          <span
+                            key={currency}
+                            className="text-lg font-semibold text-maroon-deep"
+                          >
+                            {formatPrice(amount, currency)}
+                          </span>
+                        ) : null,
+                      )}
+                    </div>
+                  </div>
+                )}
+
+              <p className="mt-3 text-xs leading-5 text-muted">
+                These are indicative catalogue rates. Our team will confirm the
+                final price based on your travel dates, group size and
+                accommodation preferences.
+              </p>
+            </div>
+          )}
 
           <p className="mt-2 text-xs leading-5 text-muted">
             The list is populated from the safari data file.

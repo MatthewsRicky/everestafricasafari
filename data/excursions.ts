@@ -16,7 +16,7 @@ export const excursions: Excursion[] = [
       {
         field: "itinerary",
         status: "needs-verification",
-        note: "Confirm timings, activities, transport arrangements and inclusions with the original source or operator.",
+        note: "Confirm timings, activities, transport arrangements and inclusions with the original source or operator. Reference prices are indicative. Confirm current operator rates, group size and inclusions before publication or booking.",
       },
       {
         field: "image",
@@ -32,6 +32,10 @@ export const excursions: Excursion[] = [
       "Enjoy a Swahili-style lunch at a local restaurant",
     ],
     imageStatus: "source-unverified",
+    prices: {
+      EUR: 80,
+      USD: 100,
+    },
   },
   {
     slug: "shimba-hills",
@@ -48,7 +52,7 @@ export const excursions: Excursion[] = [
       {
         field: "itinerary",
         status: "needs-verification",
-        note: "Confirm timings, wildlife activities, Sheldrick Falls access and lunch arrangements with the operator.",
+        note: "Confirm timings, wildlife activities, Sheldrick Falls access and lunch arrangements with the operator. Reference prices are indicative. Confirm current operator rates, group size and inclusions before publication or booking",
       },
       {
         field: "image",
@@ -64,6 +68,10 @@ export const excursions: Excursion[] = [
       "Explore a different route during the return game drive",
     ],
     imageStatus: "source-unverified",
+    prices: {
+      EUR: 140,
+      USD: 160,
+    },
   },
   {
     slug: "mombasa-city-tour",
@@ -80,7 +88,7 @@ export const excursions: Excursion[] = [
       {
         field: "itinerary",
         status: "needs-verification",
-        note: "Confirm the final route, attraction admission arrangements, transport and optional activities.",
+        note: "Confirm the final route, attraction admission arrangements, transport and optional activities. Reference prices are indicative. Confirm current operator rates, group size and inclusions before publication or booking.",
       },
       {
         field: "image",
@@ -97,6 +105,10 @@ export const excursions: Excursion[] = [
       "Optional cultural and nature attractions",
     ],
     imageStatus: "source-unverified",
+    prices: {
+      EUR: 90,
+      USD: 100,
+    },
   },
   {
     slug: "wasini-island-dhow-trip",
@@ -113,7 +125,7 @@ export const excursions: Excursion[] = [
       {
         field: "itinerary",
         status: "needs-verification",
-        note: "Confirm marine park fees, snorkeling equipment, sea conditions, transport and meal inclusions with the operator.",
+        note: "Confirm marine park fees, snorkeling equipment, sea conditions, transport and meal inclusions with the operator. Reference prices are indicative. Confirm current operator rates, group size and inclusions before publication or booking.",
       },
       {
         field: "image",
@@ -130,6 +142,10 @@ export const excursions: Excursion[] = [
       "Optional guided cultural walk",
     ],
     imageStatus: "source-unverified",
+    prices: {
+      EUR: 70,
+      USD: 80,
+    },
   },
 ];
 

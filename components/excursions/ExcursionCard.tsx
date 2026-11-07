@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Clock3, MapPin } from "lucide-react";
 
 import type { Excursion } from "@/types/excursion";
+import { formatPrice } from "@/lib/format-price";
 
 type ExcursionCardProps = {
   excursion: Excursion;
@@ -56,6 +57,32 @@ export default function ExcursionCard({ excursion }: ExcursionCardProps) {
         <p className="mt-3 flex-1 text-sm leading-7 text-ink/70">
           {excursion.description}
         </p>
+        {excursion.prices && Object.keys(excursion.prices).length > 0 && (
+          <div className="mt-5 border-t border-forest/10 pt-4">
+            <p className="text-xs font-medium uppercase tracking-wider text-ink/50">
+              Indicative price per person
+            </p>
+
+            <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
+              {(
+                [
+                  ["USD", excursion.prices.USD],
+                  ["EUR", excursion.prices.EUR],
+                  ["KES", excursion.prices.KES],
+                ] as const
+              ).map(([currency, amount]) =>
+                typeof amount === "number" ? (
+                  <span
+                    key={currency}
+                    className="text-lg font-semibold text-forest"
+                  >
+                    {formatPrice(amount, currency)}
+                  </span>
+                ) : null,
+              )}
+            </div>
+          </div>
+        )}
 
         <Link
           href={`/excursions/${excursion.slug}`}

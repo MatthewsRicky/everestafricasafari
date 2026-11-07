@@ -53,6 +53,12 @@ export type Safari = {
 
   // Placeholder images must be replaced with approved client imagery.
   imageStatus: "placeholder" | "source-unverified" | "approved";
+
+  prices?: {
+    KES?: number;
+    USD?: number;
+    EUR?: number;
+  };
 };
 
 export type SafariDestination = {

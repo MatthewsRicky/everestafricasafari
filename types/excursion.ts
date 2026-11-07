@@ -13,4 +13,9 @@ export type Excursion = {
   verificationNotes: VerificationField[];
   highlights: string[];
   imageStatus: "placeholder" | "source-unverified" | "approved";
+  prices?: {
+    KES?: number;
+    USD?: number;
+    EUR?: number;
+  };
 };

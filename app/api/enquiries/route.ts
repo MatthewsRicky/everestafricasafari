@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
+import { getSafariBySlug } from "@/data/safaris";
+import { formatPrice } from "@/lib/format-price";
 
 import { enquirySchema } from "@/lib/validation";
 
@@ -34,6 +36,21 @@ export async function POST(request: Request) {
     }
 
     const enquiry = parsed.data;
+
+   const selectedSafari =
+     enquiry.enquiryType === "safari" && enquiry.safariSlug
+       ? getSafariBySlug(enquiry.safariSlug)
+       : undefined;
+
+    if (enquiry.enquiryType === "safari" && !selectedSafari) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "The selected safari package could not be found.",
+        },
+        { status: 400 },
+      );
+    }
 
     // Silently accept honeypot submissions without sending email.
     if (enquiry.website.trim() !== "") {
@@ -78,11 +95,35 @@ export async function POST(request: Request) {
             ? enquiry.destinationSlug
             : enquiry.customTrip;
 
+            const safariPricing = selectedSafari?.prices
+              ? Object.entries(selectedSafari.prices)
+                  .filter(([, amount]) => typeof amount === "number")
+                  .map(
+                    ([currency, amount]) =>
+                      `${currency}: ${formatPrice(
+                        amount as number,
+                        currency as "KES" | "USD" | "EUR",
+                      )}`,
+                  )
+                  .join("\n")
+              : "";
+
     const details = [
       "NEW SAFARI ENQUIRY",
       "",
       `Enquiry type: ${enquiryLabels[enquiry.enquiryType]}`,
       `Selected package / destination: ${selectedItem || "Not specified"}`,
+      `Selected package / destination: ${
+        selectedSafari?.title || selectedItem || "Not specified"
+      }`,
+      ...(selectedSafari
+        ? [
+            `Package slug: ${selectedSafari.slug}`,
+            `Indicative package prices per person: ${
+              safariPricing || "No catalogue price listed"
+            }`,
+          ]
+        : []),
       "",
       "CONTACT DETAILS",
       `Name: ${enquiry.fullName}`,

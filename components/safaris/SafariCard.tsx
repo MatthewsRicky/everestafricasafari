@@ -1,12 +1,23 @@
 import Link from "next/link";
 import { ArrowUpRight, MapPin, Clock3 } from "lucide-react";
+
 import type { Safari } from "@/types/safari";
+import { formatPrice } from "@/lib/format-price";
 
 type SafariCardProps = {
   safari: Safari;
 };
 
 export default function SafariCard({ safari }: SafariCardProps) {
+  const prices = [
+    { currency: "USD" as const, amount: safari.prices?.USD },
+    { currency: "EUR" as const, amount: safari.prices?.EUR },
+    { currency: "KES" as const, amount: safari.prices?.KES },
+  ].filter(
+    (price): price is typeof price & { amount: number } =>
+      typeof price.amount === "number",
+  );
+
   return (
     <article className="group overflow-hidden rounded-3xl border border-border bg-white shadow-sm transition duration-300 hover:-translate-y-1 hover:shadow-xl">
       <Link
@@ -43,6 +54,29 @@ export default function SafariCard({ safari }: SafariCardProps) {
           <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted">
             {safari.description}
           </p>
+
+          {prices.length > 0 && (
+            <div className="mt-5 border-t border-border pt-4">
+              <p className="text-xs font-semibold uppercase tracking-wider text-muted">
+                Indicative price per person
+              </p>
+
+              <div className="mt-2 flex flex-wrap items-baseline gap-x-4 gap-y-1">
+                {prices.map(({ currency, amount }) => (
+                  <span
+                    key={currency}
+                    className="text-lg font-semibold text-maroon-deep"
+                  >
+                    {formatPrice(amount, currency)}
+                  </span>
+                ))}
+              </div>
+
+              <p className="mt-1 text-xs text-muted">
+                Final pricing subject to confirmation.
+              </p>
+            </div>
+          )}
 
           <div className="mt-5 flex items-center justify-between border-t border-border pt-4">
             <span className="flex items-center gap-2 text-xs text-muted">

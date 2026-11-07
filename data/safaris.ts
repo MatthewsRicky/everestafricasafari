@@ -21,6 +21,11 @@ type SafariSeed = {
   description: string;
   verificationNotes?: VerificationField[];
   featured?: boolean;
+  prices?: {
+    KES?: number;
+    USD?: number;
+    EUR?: number;
+  };
 };
 
 const commonVerification: VerificationField[] = [
@@ -42,7 +47,7 @@ const commonVerification: VerificationField[] = [
   {
     field: "pricing",
     status: "needs-verification",
-    note: "No price has been entered; request current rates from the operator.",
+    note: "Catalogue prices are indicative and require confirmation against current supplier rates, season, accommodation and group size.",
   },
   {
     field: "itinerary",
@@ -102,6 +107,10 @@ const safariSeeds: SafariSeed[] = [
     description:
       "A short safari centred on the Maasai Mara National Reserve. Confirm the full itinerary, departure point, accommodation and inclusions.",
     featured: true,
+    prices: {
+      EUR: 1190,
+      USD: 1380,
+    }
   },
   {
     slug: "maasai-mara-3-day",
@@ -116,6 +125,10 @@ const safariSeeds: SafariSeed[] = [
     description:
       "A multi-day safari to the Maasai Mara. Verify the route, accommodation and daily game-drive schedule.",
     featured: true,
+    prices: {
+      EUR: 1540,
+      USD: 1790,
+    }
   },
   {
     slug: "tsavo-east-west-2-day",
@@ -129,6 +142,10 @@ const safariSeeds: SafariSeed[] = [
     sourceUrl: mombasaListing,
     description:
       "A short safari listing covering Tsavo East and Tsavo West. Confirm the park sequence and departure arrangements.",
+    prices: {
+      EUR: 430,
+      USD: 500,
+    },
   },
   {
     slug: "tsavo-east-west-3-day",
@@ -142,6 +159,10 @@ const safariSeeds: SafariSeed[] = [
     description:
       "Explore two major Tsavo parks on a multi-day safari. The final route and accommodation remain to be confirmed.",
     featured: true,
+    prices: {
+      EUR: 750,
+      USD: 870,
+    },
   },
   {
     slug: "tsavo-east-west-4-day",
@@ -154,6 +175,10 @@ const safariSeeds: SafariSeed[] = [
     category: "Wildlife",
     description:
       "An extended Tsavo safari listing. Confirm the daily itinerary and the parks visited on each day.",
+    prices: {
+      EUR: 1127,
+      USD: 1310,
+    },
   },
   {
     slug: "tsavo-amboseli-5-day",
@@ -164,6 +189,10 @@ const safariSeeds: SafariSeed[] = [
     destinations: ["Tsavo East", "Tsavo West", "Amboseli"],
     durationDays: 5,
     category: "Adventure",
+    prices: {
+      EUR: 1342,
+      USD: 1560,
+    },
     description:
       "A multi-park safari combining Tsavo and Amboseli. Confirm the order of travel and overnight stops.",
   },
@@ -186,6 +215,11 @@ const safariSeeds: SafariSeed[] = [
         note: "Confirm whether the itinerary includes both Tsavo parks and Amboseli, and in what order.",
       },
     ],
+    prices:{
+      EUR: 1350,
+      USD: 1500,
+    }
+
   },
   {
     slug: "tsavo-amboseli-nakuru-mara-8-day",
@@ -206,6 +240,10 @@ const safariSeeds: SafariSeed[] = [
     category: "Wildlife",
     description:
       "A multi-park Kenya safari advertised across five major wildlife destinations. Verify the park sequence and travel times.",
+    prices:{
+      EUR: 2250,
+      USD: 2500,
+    }
   },
   {
     slug: "amboseli-samburu-mara-8-day",
@@ -220,6 +258,10 @@ const safariSeeds: SafariSeed[] = [
     sourceUrl: adventureListing,
     description:
       "A multi-region safari linking Amboseli, Samburu and the Maasai Mara. Confirm the itinerary and transfers.",
+    prices:{
+      EUR: 2875,
+      USD: 3200,
+    }
   },
   {
     slug: "samburu-nakuru-mara-6-day",
@@ -233,6 +275,10 @@ const safariSeeds: SafariSeed[] = [
     sourceUrl: adventureListing,
     description:
       "A six-day safari advertised across Samburu, Lake Nakuru and the Maasai Mara. Confirm the order of travel.",
+    prices:{
+      EUR: 2075,
+      USD: 2300,
+    }
   },
   {
     slug: "mara-nakuru-samburu-7-day",
@@ -246,6 +292,10 @@ const safariSeeds: SafariSeed[] = [
     sourceUrl: adventureListing,
     description:
       "A seven-day safari across three wildlife regions. Verify the route and compare it with the six-day package.",
+    prices:{
+      EUR: 1975,
+      USD: 2200,
+    }
   },
   {
     slug: "samburu-aberdares-nakuru-mara-7-day",
@@ -259,6 +309,10 @@ const safariSeeds: SafariSeed[] = [
     sourceUrl: adventureListing,
     description:
       "A seven-day route advertised across northern Kenya, the Aberdares, Lake Nakuru and the Maasai Mara.",
+    prices:{
+      EUR: 2175,
+      USD: 2400,
+    }
   },
   {
     slug: "nairobi-mara-nakuru-4-day",
@@ -272,6 +326,10 @@ const safariSeeds: SafariSeed[] = [
     sourceUrl: adventureListing,
     description:
       "A four-day safari listing naming Nairobi, the Maasai Mara and Lake Nakuru. Confirm whether Nairobi is a stop or departure point.",
+    prices: {
+      EUR: 2150,
+      USD: 2500,
+    },
   },
   {
     slug: "aberdares-mara-nakuru-5-day",
@@ -284,6 +342,10 @@ const safariSeeds: SafariSeed[] = [
     category: "Adventure",
     description:
       "A five-day safari advertised across the Aberdares, Maasai Mara and Lake Nakuru. Confirm the daily itinerary.",
+    prices: {
+      EUR: 1665,
+      USD: 1850,
+    }
   },
   {
     slug: "kenya-circuit-10-day",
@@ -313,6 +375,10 @@ const safariSeeds: SafariSeed[] = [
         note: "The source title and its description do not agree on all destinations. Confirm the definitive route with the operator.",
       },
     ],
+    prices: {
+      EUR: 3500,
+      USD: 4000,
+    }
   },
   {
     slug: "lake-nakuru-2-day",
@@ -326,6 +392,10 @@ const safariSeeds: SafariSeed[] = [
     sourceUrl: adventureListing,
     description:
       "A two-day safari to Lake Nakuru National Park. Confirm the departure point, itinerary and accommodation.",
+    prices:{
+      EUR: 655,
+      USD: 730,
+    }
   },
   {
     slug: "samburu-2-day",
@@ -339,6 +409,10 @@ const safariSeeds: SafariSeed[] = [
     sourceUrl: adventureListing,
     description:
       "A short safari to Samburu National Reserve. Confirm the route, transport arrangements and overnight details.",
+    prices:{
+      EUR: 430,
+      USD: 620,
+    }
   },
 ];
 
