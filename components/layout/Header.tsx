@@ -38,13 +38,13 @@ export default function Header() {
 
             <nav
               aria-label="Main navigation"
-              className="hidden items-center gap-6 lg:flex xl:gap-8"
+              className="hidden items-center gap-2 lg:flex xl:gap-4"
             >
               {navigation.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className="text-sm font-medium text-ink/80 transition-colors hover:text-forest hover:bg-sand px-2 py-1 rounded-md"
+                  className="text-xs font-medium text-ink/80 transition-colors hover:text-forest hover:bg-sand px-2 py-1 rounded-md"
                 >
                   {item.label}
                 </Link>

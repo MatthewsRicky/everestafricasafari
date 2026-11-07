@@ -1,3 +1,4 @@
+@import "leaflet/dist/leaflet.css";
 @import "tailwindcss";
 
 :root {
@@ -100,4 +101,11 @@ button {
 :focus-visible {
   outline: 2px solid var(--color-safari-gold);
   outline-offset: 4px;
+}
+
+
+@layer components {
+  .admin-input {
+    @apply w-full rounded-lg border border-gray-300 bg-white px-4 py-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-gray-900 focus:ring-2 focus:ring-gray-900/10;
+  }
 }
