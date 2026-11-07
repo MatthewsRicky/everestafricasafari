@@ -1,0 +1,21 @@
+import { redirect } from "next/navigation";
+
+import { createClient } from "@/lib/supabase/server";
+
+export async function requireAdmin() {
+  const supabase = await createClient();
+
+  const { data, error } = await supabase.auth.getClaims();
+
+  if (error || !data?.claims) {
+    redirect("/admin/login");
+  }
+
+  const appMetadata = data.claims.app_metadata as { role?: string } | undefined;
+
+  if (appMetadata?.role !== "admin") {
+    redirect("/");
+  }
+
+  return data.claims;
+}

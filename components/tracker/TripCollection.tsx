@@ -38,17 +38,34 @@ export default function TripCollection({ trips }: TripCollectionProps) {
           </p>
         </div>
 
-        <div className="grid overflow-hidden rounded-2xl bg-white shadow-lg lg:grid-cols-2">
-          <div
-            className="min-h-[320px] bg-cover bg-center lg:min-h-[450px]"
-            style={
-              featuredTrip.image
-                ? { backgroundImage: `url("${featuredTrip.image}")` }
-                : undefined
-            }
-          />
+        <div className="overflow-hidden rounded-2xl bg-white shadow-lg">
+          {/* Polarsteps journey */}
+          {featuredTrip.embedUrl ? (
+            <div className="relative w-full bg-gray-100">
+              <iframe
+                src={featuredTrip.embedUrl}
+                title={`Follow ${featuredTrip.title} on Polarsteps`}
+                className="block h-[450px] w-full border-0 sm:h-[550px] lg:h-[650px]"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="strict-origin-when-cross-origin"
+              />
+            </div>
+          ) : (
+            <div
+              className="min-h-[320px] bg-cover bg-center lg:min-h-[450px]"
+              style={
+                featuredTrip.image
+                  ? {
+                      backgroundImage: `url("${featuredTrip.image}")`,
+                    }
+                  : undefined
+              }
+            />
+          )}
 
-          <div className="flex flex-col justify-center p-8 sm:p-12">
+          {/* Journey information */}
+          <div className="p-8 sm:p-12">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-forest">
               Featured journey
             </p>
@@ -62,7 +79,7 @@ export default function TripCollection({ trips }: TripCollectionProps) {
               {featuredTrip.period && ` · ${featuredTrip.period}`}
             </p>
 
-            <p className="mt-6 text-sm leading-7 text-gray-600">
+            <p className="mt-6 max-w-3xl text-sm leading-7 text-gray-600">
               {featuredTrip.description}
             </p>
 
@@ -73,7 +90,7 @@ export default function TripCollection({ trips }: TripCollectionProps) {
                 rel="noopener noreferrer"
                 className="mt-8 inline-flex w-fit items-center justify-center rounded-full bg-forest-deep px-7 py-3.5 text-sm font-semibold text-white transition hover:bg-forest"
               >
-                Explore Journey on Polarsteps
+                View journey on Polarsteps
                 <span aria-hidden="true" className="ml-2">
                   ↗
                 </span>
