@@ -9,6 +9,7 @@ type PageHeroProps = {
   title: string;
   description: string;
   image: string;
+  video?: string;
   ctaHref?: string;
   ctaLabel?: string;
   secondaryHref?: string;
@@ -20,18 +21,40 @@ export default function PageHero({
   title,
   description,
   image,
+  video,
   ctaHref = "/request-a-quote",
   ctaLabel = "Start planning",
   secondaryHref,
   secondaryLabel,
 }: PageHeroProps) {
   return (
-    <section className="relative overflow-hidden bg-forest-deep text-white">
-      <div
-        className="absolute inset-0 bg-cover bg-center opacity-75"
-        style={{ backgroundImage: `url("${image}")` }}
-      />
-      <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(16,44,37,0.9),rgba(16,44,37,0.72),rgba(16,44,37,0.25))]" />
+    <section className="relative isolate overflow-hidden bg-forest-deep text-white">
+      {/* Background image */}
+      {!video && (
+        <div
+          aria-hidden="true"
+          className="absolute inset-0 -z-10 bg-cover bg-center opacity-75"
+          style={{ backgroundImage: `url("${image}")` }}
+        />
+      )}
+
+      {/* Background video */}
+      {video && (
+        <video
+          aria-hidden="true"
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={image}
+          className="absolute inset-0 -z-10 h-full w-full object-cover object-center opacity-75"
+        >
+          <source src={video} type="video/mp4" />
+        </video>
+      )}
+
+      {/* Contrast overlay */}
+      <div className="absolute inset-0 -z-10 bg-[linear-gradient(90deg,rgba(16,44,37,0.9),rgba(16,44,37,0.72),rgba(16,44,37,0.25))]" />
 
       <Container className="relative py-20 sm:py-24 lg:py-28">
         <div className="max-w-3xl">
