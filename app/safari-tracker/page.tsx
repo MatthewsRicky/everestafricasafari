@@ -4,6 +4,8 @@ import type { Metadata } from "next";
 import { getPublishedJourneys } from "@/lib/journeys";
 import type { Journey } from "@/types/journey";
 
+import { connection } from "next/server";
+
 import PublicJourneyCard from "@/components/tracker/PublicJourneyCard";
 
 export const metadata: Metadata = {
@@ -13,6 +15,8 @@ export const metadata: Metadata = {
 };
 
 async function SafariTrackerContent() {
+
+  await connection()
   const journeys = (await getPublishedJourneys()) as Journey[];
 
   const featured = journeys.find((journey) => journey.featured);
