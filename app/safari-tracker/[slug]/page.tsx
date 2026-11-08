@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, MapPin } from "lucide-react";
@@ -13,44 +14,24 @@ type Props = {
   params: Promise<{ slug: string }>;
 };
 
+export const metadata: Metadata = {
+  title: "Safari Journey | Everest Africa Safari",
+  description:
+    "Follow our safari journeys across Kenya and East Africa. Explore destinations, itineraries and photographs from our adventures.",
+};
+
 function formatDate(date: string | null) {
   if (!date) return null;
 
-  return new Intl.DateTimeFormat("en-GB", {
+  return new Date(`${date}T00:00:00`).toLocaleDateString("en-GB", {
     day: "numeric",
     month: "long",
     year: "numeric",
-  }).format(new Date(`${date}T00:00:00`));
+  });
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+async function PublicJourneyContent({ params }: Props) {
   const { slug } = await params;
-
-  const journey = await getJourneyBySlug(slug);
-
-  if (!journey) {
-    return {
-      title: "Journey Not Found | Everest Africa Safari",
-    };
-  }
-
-  return {
-    title: `${journey.title} | Everest Africa Safari`,
-    description:
-      journey.description ?? `Follow our ${journey.title} safari journey.`,
-    openGraph: {
-      title: journey.title,
-      description: journey.description ?? undefined,
-      images: journey.cover_image_path
-        ? [getPublicImageUrl(journey.cover_image_path)!]
-        : [],
-    },
-  };
-}
-
-export default async function PublicJourneyPage({ params }: Props) {
-  const { slug } = await params;
-
   const journey = await getJourneyBySlug(slug);
 
   if (!journey) {
@@ -58,97 +39,99 @@ export default async function PublicJourneyPage({ params }: Props) {
   }
 
   const coverImage = getPublicImageUrl(journey.cover_image_path);
-
   const start = formatDate(journey.start_date);
   const end = formatDate(journey.end_date);
-
   const stops = journey.journey_stops ?? [];
 
   return (
-    <main>
-      {/* HERO */}
-      <section className="relative isolate min-h-[480px] overflow-hidden bg-gray-900">
+    <main className="min-h-screen bg-white">
+      {/* Hero */}
+      <section className="relative isolate min-h-[65vh] overflow-hidden bg-gray-950">
         {coverImage && (
-          <img
-            src={coverImage}
-            alt={journey.title}
-            className="absolute inset-0 -z-20 h-full w-full object-cover"
+          <div
+            className="absolute inset-0 -z-10 bg-cover bg-center"
+            style={{ backgroundImage: `url("${coverImage}")` }}
           />
         )}
 
-        <div className="absolute inset-0 -z-10 bg-gradient-to-t from-black/85 via-black/40 to-black/20" />
+        <div className="absolute inset-0 -z-10 bg-black/55" />
 
-        <div className="mx-auto flex min-h-[480px] max-w-7xl flex-col justify-end px-6 py-16 lg:py-24">
+        <div className="mx-auto flex min-h-[65vh] max-w-7xl flex-col justify-end px-6 py-16 lg:px-10">
           <Link
             href="/safari-tracker"
-            className="mb-12 inline-flex w-fit items-center gap-2 text-sm text-white/80 transition hover:text-white"
+            className="mb-10 inline-flex w-fit items-center gap-2 text-sm font-medium text-white/80 transition hover:text-white"
           >
             <ArrowLeft size={16} />
-            All journeys
+            Back to Safari Tracker
           </Link>
 
-          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-white/70">
-            Everest Africa Safari · Journey Tracker
-          </p>
-
-          <h1 className="mt-4 max-w-4xl text-4xl font-semibold leading-tight text-white md:text-6xl">
-            {journey.title}
-          </h1>
-
-          {journey.description && (
-            <p className="mt-5 max-w-2xl text-base leading-8 text-white/80">
-              {journey.description}
+          <div className="max-w-4xl">
+            <p className="mb-4 text-sm font-semibold tracking-[0.2em] text-safari-gold uppercase">
+              Safari Journey
             </p>
-          )}
 
-          <div className="mt-7 flex flex-wrap gap-5 text-sm text-white/80">
-            {start && (
-              <span>
+            <h1 className="font-heading text-4xl leading-tight font-semibold text-white sm:text-5xl lg:text-7xl">
+              {journey.title}
+            </h1>
+
+            {(start || end) && (
+              <p className="mt-6 text-sm text-white/80 sm:text-base">
                 {start}
-                {end && ` – ${end}`}
-              </span>
+                {start && end && start !== end ? ` — ${end}` : ""}
+              </p>
             )}
-
-            <span>{stops.length} destinations</span>
           </div>
         </div>
       </section>
 
-      {/* INTRODUCTION */}
-      <section className="px-6 py-16 lg:py-20">
-        <div className="mx-auto max-w-7xl">
-          <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
-              The adventure
-            </p>
-
-            <h2 className="mt-3 text-3xl font-semibold text-gray-900">
-              Following the journey
-            </h2>
-
-            <p className="mt-5 whitespace-pre-line text-base leading-8 text-gray-600">
-              {journey.description ||
-                "Explore the destinations and experiences from this safari adventure."}
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* MAP */}
-      {stops.length > 0 && (
-        <section className="bg-[#f7f5f0] px-6 py-16 lg:py-20">
-          <div className="mx-auto max-w-7xl">
-            <div className="mb-8">
-              <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
-                The route
+      {/* Introduction */}
+      <section className="section-padding">
+        <div className="mx-auto max-w-4xl">
+          {journey.description && (
+            <div className="mb-10">
+              <p className="text-sm font-semibold tracking-[0.18em] text-safari-gold uppercase">
+                The Journey
               </p>
 
-              <h2 className="mt-3 text-3xl font-semibold text-gray-900">
-                Explore our route
+              <p className="mt-5 text-lg leading-8 text-gray-600">
+                {journey.description}
+              </p>
+            </div>
+          )}
+
+          {stops.length > 0 && (
+            <div className="flex items-start gap-3 border-t border-gray-200 pt-6">
+              <MapPin size={20} className="mt-1 shrink-0 text-safari-gold" />
+
+              <div>
+                <p className="text-sm font-semibold text-gray-900">
+                  Destinations visited
+                </p>
+
+                <p className="mt-1 text-sm leading-6 text-gray-600">
+                  {stops.map((stop) => stop.location).join(" · ")}
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Journey Map */}
+      {stops.length > 0 && (
+        <section className="section-padding bg-gray-50">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10 max-w-2xl">
+              <p className="text-sm font-semibold tracking-[0.18em] text-safari-gold uppercase">
+                The Route
+              </p>
+
+              <h2 className="mt-3 font-heading text-3xl font-semibold text-gray-900 sm:text-4xl">
+                Follow the journey
               </h2>
 
-              <p className="mt-3 text-sm leading-7 text-gray-600">
-                Discover the places visited throughout this journey.
+              <p className="mt-4 leading-7 text-gray-600">
+                Explore the destinations and stops along this safari journey.
               </p>
             </div>
 
@@ -157,21 +140,21 @@ export default async function PublicJourneyPage({ params }: Props) {
         </section>
       )}
 
-      {/* TIMELINE */}
+      {/* Timeline */}
       {stops.length > 0 && (
-        <section className="px-6 py-16 lg:py-24">
-          <div className="mx-auto max-w-7xl">
+        <section className="section-padding">
+          <div className="mx-auto max-w-5xl">
             <div className="mb-12 max-w-2xl">
-              <p className="text-xs font-semibold uppercase tracking-widest text-gray-400">
-                The itinerary
+              <p className="text-sm font-semibold tracking-[0.18em] text-safari-gold uppercase">
+                Along the Way
               </p>
 
-              <h2 className="mt-3 text-3xl font-semibold text-gray-900">
-                The journey, step by step
+              <h2 className="mt-3 font-heading text-3xl font-semibold text-gray-900 sm:text-4xl">
+                Journey highlights
               </h2>
 
-              <p className="mt-3 text-sm leading-7 text-gray-500">
-                Explore the destinations, experiences and activities that make
+              <p className="mt-4 leading-7 text-gray-600">
+                Discover the places, experiences and memorable moments that make
                 up this adventure.
               </p>
             </div>
@@ -181,35 +164,70 @@ export default async function PublicJourneyPage({ params }: Props) {
         </section>
       )}
 
-      {/* GALLERY */}
-      <section className="bg-[#f7f5f0] px-6 py-16 lg:py-24">
-        <div className="mx-auto max-w-7xl">
-          <PublicJourneyGallery stops={stops} />
-        </div>
-      </section>
+      {/* Gallery */}
+      {stops.length > 0 && (
+        <section className="section-padding bg-gray-50">
+          <div className="mx-auto max-w-7xl">
+            <div className="mb-10 max-w-2xl">
+              <p className="text-sm font-semibold tracking-[0.18em] text-safari-gold uppercase">
+                Memories
+              </p>
 
-      {/* CTA */}
-      <section className="px-6 py-20">
+              <h2 className="mt-3 font-heading text-3xl font-semibold text-gray-900 sm:text-4xl">
+                Moments from the journey
+              </h2>
+
+              <p className="mt-4 leading-7 text-gray-600">
+                A collection of photographs from the destinations and
+                experiences along the way.
+              </p>
+            </div>
+
+            <PublicJourneyGallery stops={stops} />
+          </div>
+        </section>
+      )}
+
+      {/* Call to Action */}
+      <section className="section-padding bg-gray-950">
         <div className="mx-auto max-w-4xl text-center">
-          <MapPin size={28} className="mx-auto text-gray-400" />
+          <p className="text-sm font-semibold tracking-[0.18em] text-safari-gold uppercase">
+            Your Adventure Awaits
+          </p>
 
-          <h2 className="mt-5 text-3xl font-semibold text-gray-900">
-            Ready to experience your own adventure?
+          <h2 className="mt-4 font-heading text-3xl font-semibold text-white sm:text-4xl">
+            Ready to create your own safari story?
           </h2>
 
-          <p className="mx-auto mt-4 max-w-xl text-sm leading-7 text-gray-500">
-            Let Everest Africa Safari help you plan a journey through the
-            extraordinary landscapes of East Africa.
+          <p className="mx-auto mt-5 max-w-2xl leading-7 text-gray-300">
+            Let us help you plan an unforgettable journey through Kenya and East
+            Africa.
           </p>
 
           <Link
-            href="/request-a-quote"
-            className="mt-8 inline-flex rounded-lg bg-gray-900 px-7 py-3.5 text-sm font-medium text-white transition hover:bg-gray-700"
+            href="/contact"
+            className="mt-8 inline-flex items-center justify-center bg-safari-gold px-7 py-4 text-sm font-semibold text-gray-950 transition hover:bg-white"
           >
-            Plan your safari
+            Plan Your Safari
           </Link>
         </div>
       </section>
     </main>
+  );
+}
+
+export default function PublicJourneyPage({ params }: Props) {
+  return (
+    <Suspense
+      fallback={
+        <main className="min-h-screen">
+          <div className="mx-auto max-w-7xl px-6 py-24">
+            <p className="text-sm text-gray-500">Loading safari journey...</p>
+          </div>
+        </main>
+      }
+    >
+      <PublicJourneyContent params={params} />
+    </Suspense>
   );
 }

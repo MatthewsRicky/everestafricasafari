@@ -1,15 +1,16 @@
 import Link from "next/link";
+import { Suspense } from "react";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 
 import { getJourneyById } from "@/lib/journeys";
 import JourneyForm from "@/components/admin/JourneyForm";
 
-export default async function EditJourneyPage({
-  params,
-}: {
+type Props = {
   params: Promise<{ id: string }>;
-}) {
+};
+
+async function EditJourneyContent({ params }: Props) {
   const { id } = await params;
 
   const journey = await getJourneyById(id);
@@ -40,5 +41,19 @@ export default async function EditJourneyPage({
 
       <JourneyForm initialJourney={journey} />
     </div>
+  );
+}
+
+export default function EditJourneyPage({ params }: Props) {
+  return (
+    <Suspense
+      fallback={
+        <div className="space-y-4">
+          <p className="text-sm text-gray-500">Loading journey details...</p>
+        </div>
+      }
+    >
+      <EditJourneyContent params={params} />
+    </Suspense>
   );
 }

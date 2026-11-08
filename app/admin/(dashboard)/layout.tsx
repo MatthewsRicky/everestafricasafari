@@ -1,17 +1,10 @@
 import type { ReactNode } from "react";
-import { connection } from "next/server";
+import { Suspense } from "react";
 
 import AdminSidebar from "@/components/admin/AdminSidebar";
 import { requireAdmin } from "@/lib/supabase/admin";
 
-export default async function AdminDashboardLayout({
-  children,
-}: {
-  children: ReactNode;
-}) {
-  // Ensure authentication is evaluated at request time.
-  await connection();
-
+async function AdminDashboardContent({ children }: { children: ReactNode }) {
   await requireAdmin();
 
   return (
@@ -32,5 +25,25 @@ export default async function AdminDashboardLayout({
         <div className="mx-auto max-w-7xl p-6 lg:p-10">{children}</div>
       </main>
     </div>
+  );
+}
+
+export default function AdminDashboardLayout({
+  children,
+}: {
+  children: ReactNode;
+}) {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-gray-50">
+          <p className="text-sm text-gray-500">
+            Verifying administrator access...
+          </p>
+        </div>
+      }
+    >
+      <AdminDashboardContent>{children}</AdminDashboardContent>
+    </Suspense>
   );
 }

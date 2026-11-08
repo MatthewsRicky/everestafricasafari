@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { CalendarDays, CheckCircle2, FileEdit } from "lucide-react";
 
 import { getAdminJourneys } from "@/lib/journeys";
@@ -28,7 +29,7 @@ function StatCard({
   );
 }
 
-export default async function JourneysPage() {
+async function JourneysContent() {
   const journeys = (await getAdminJourneys()) as Journey[];
 
   const published = journeys.filter(
@@ -49,7 +50,8 @@ export default async function JourneysPage() {
         </h1>
 
         <p className="mt-2 text-sm text-gray-500">
-          Manage Everest Africa Safari's published journeys and travel stories.
+          Manage Everest Africa Safari&apos;s published journeys and travel
+          stories.
         </p>
       </div>
 
@@ -67,5 +69,19 @@ export default async function JourneysPage() {
 
       <JourneyTable journeys={journeys} />
     </div>
+  );
+}
+
+export default function JourneysPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="space-y-4">
+          <p className="text-sm text-gray-500">Loading journeys...</p>
+        </div>
+      }
+    >
+      <JourneysContent />
+    </Suspense>
   );
 }
