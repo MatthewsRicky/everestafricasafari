@@ -129,7 +129,14 @@ export async function getPublishedJourneys() {
     .order("start_date", { ascending: false });
 
   if (error) {
-    throw new Error(error.message);
+    console.error("Failed to fetch published journeys:", {
+      message: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code,
+    });
+
+    throw new Error("Unable to retrieve published safari journeys.");
   }
 
   return data ?? [];
