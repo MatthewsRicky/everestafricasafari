@@ -1,9 +1,10 @@
+import { Suspense } from "react";
 import { redirect } from "next/navigation";
 
 import AdminLoginForm from "@/components/admin/AdminLoginForm";
 import { createClient } from "@/lib/supabase/server";
 
-export default async function AdminLoginPage() {
+async function AdminLoginContent() {
   const supabase = await createClient();
 
   const { data } = await supabase.auth.getClaims();
@@ -16,6 +17,10 @@ export default async function AdminLoginPage() {
     redirect("/admin/journeys");
   }
 
+  return <AdminLoginForm />;
+}
+
+export default function AdminLoginPage() {
   return (
     <main className="flex min-h-[75vh] items-center justify-center bg-stone-100 px-5 py-16">
       <div className="w-full max-w-md rounded-2xl border border-stone-200 bg-white p-8 shadow-sm sm:p-10">
@@ -34,7 +39,15 @@ export default async function AdminLoginPage() {
           </p>
         </div>
 
-        <AdminLoginForm />
+        <Suspense
+          fallback={
+            <div className="py-6 text-center text-sm text-stone-500">
+              Checking authentication...
+            </div>
+          }
+        >
+          <AdminLoginContent />
+        </Suspense>
       </div>
     </main>
   );
