@@ -8,6 +8,7 @@ import { connection } from "next/server";
 
 import PublicJourneyCard from "@/components/tracker/PublicJourneyCard";
 import PageHero from "@/components/shared/PageHero";
+import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
   title: "Our Safari Journeys | Everest Africa Safari",
@@ -95,13 +96,6 @@ async function SafariTrackerContent() {
 export default function SafariTrackerPage() {
   return (
     <main>
-      <PageHero
-        eyebrow="Safari Tracker"
-        title="Follow our safari journeys across Kenya and East Africa."
-        description="Explore destinations, itineraries and photographs from our adventures."
-        image="/packages/4-Days-Nairobi-Mara-Nakuru_1.jpg"
-        video="https://raujheqxyvjsbzvprjei.supabase.co/storage/v1/object/public/hero_vids/Lion.mp4"
-      />
       <section className="bg-[#f7f5f0] px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
