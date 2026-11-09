@@ -10,11 +10,19 @@ const heroImage =
 export default function Hero() {
   return (
     <section className="relative isolate overflow-hidden bg-maroon-deep/40 text-white">
-      <div
+      <video
         aria-hidden="true"
-        className="absolute inset-0 -z-20 bg-cover bg-center opacity-70"
-        style={{ backgroundImage: `url("${heroImage}")` }}
-      />
+        autoPlay
+        loop
+        muted
+        playsInline
+        className="absolute inset-0 h-full w-full object-cover object-center opacity-40"
+      >
+        <source
+          src="https://raujheqxyvjsbzvprjei.supabase.co/storage/v1/object/public/hero_vids/Herd.mp4"
+          type="video/mp4"
+        />
+      </video>
 
       <div
         aria-hidden="true"

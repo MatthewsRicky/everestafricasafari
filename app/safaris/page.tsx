@@ -27,7 +27,7 @@ export default function SafarisPage() {
         eyebrow="Safaris"
         title="Find the safari that fits your journey."
         description="Explore safari packages by destination, duration and travel style. Every journey can be discussed with our team before you commit."
-        video="https://raujheqxyvjsbzvprjei.supabase.co/storage/v1/object/public/hero_vids/zebras.mp4"
+        video="https://raujheqxyvjsbzvprjei.supabase.co/storage/v1/object/public/hero_vids/Zebras.mp4"
         image="/packages/4-Days-Nairobi-Mara-Nakuru_1.jpg"
       />
       <section className="bg-maroon-deep py-16 text-white sm:py-20 lg:py-24">
