@@ -31,7 +31,7 @@ export default function AboutPage() {
         eyebrow="About us"
         title="We believe the best safaris feel personal from the very first conversation."
         description="Everest Africa Safari creates journeys that balance iconic wildlife, refined comfort and the freedom to travel in your own way."
-        video="/videos/zebras.mp4"
+        video="https://raujheqxyvjsbzvprjei.supabase.co/storage/v1/object/public/hero_vids/Eagle.mp4"
         image="/packages/4-Days-Nairobi-Mara-Nakuru_1.jpg"
         ctaHref="/request-a-quote"
         ctaLabel="Plan your safari"

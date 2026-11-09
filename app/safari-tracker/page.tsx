@@ -7,7 +7,7 @@ import type { Journey } from "@/types/journey";
 import { connection } from "next/server";
 
 import PublicJourneyCard from "@/components/tracker/PublicJourneyCard";
-import PageHero from "@/components/shared/PageHero";
+
 import PageHero from "@/components/shared/PageHero";
 
 export const metadata: Metadata = {
@@ -96,6 +96,13 @@ async function SafariTrackerContent() {
 export default function SafariTrackerPage() {
   return (
     <main>
+      <PageHero
+        eyebrow="Safari journeys"
+        title="Every journey has a story."
+        video="https://raujheqxyvjsbzvprjei.supabase.co/storage/v1/object/public/hero_vids/Antelope.mp4"
+        image="/packages/4-Days-Nairobi-Mara-Nakuru.jpg"
+        description="Travel with us through the landscapes, wildlife and unforgettable experiences of East Africa. Explore our journeys and discover the stories behind each adventure."
+        />
       <section className="bg-[#f7f5f0] px-6 py-20 lg:py-28">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gray-500">
