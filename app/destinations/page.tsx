@@ -12,6 +12,7 @@ export default function DestinationsPage() {
         title="Where your dream safari begins."
         description="Explore the landscapes and wildlife stories that define a remarkable African journey, from iconic plains to hidden river systems."
         image="/packages/4-Days-Nairobi-Mara-Nakuru_1.jpg"
+        video="https://raujheqxyvjsbzvprjei.supabase.co/storage/v1/object/public/hero_vids/Cheetah).mp4"
       />
 
       <section className="section-padding bg-ivory">
